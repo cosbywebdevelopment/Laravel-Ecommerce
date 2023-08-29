@@ -16,13 +16,12 @@
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-
         @foreach($products as $product)
             <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
                 <div class="my-3 p-3">
                     <h2 class="display-5">{{$product->name}}</h2>
                     <p class="lead">Price £{{ $product->price }}</p>
-                    <form id="form" action="/addToCart">
+                    <form action="/add-to-cart">
                         @csrf
                         <input value="{{$product->name}}" name="name" hidden>
                         <input value="{{$product->price}}" name="price" hidden>

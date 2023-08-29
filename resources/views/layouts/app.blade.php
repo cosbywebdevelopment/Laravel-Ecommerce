@@ -258,6 +258,9 @@
             success: function(data)
             {
                 // change number on checkout icon
+                if(data == 0){
+                    location.reload();
+                }
                 $("#cart_count").text(data)
                 console.log(data); // show response from the php script.
             }

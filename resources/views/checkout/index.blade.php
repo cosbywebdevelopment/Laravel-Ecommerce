@@ -12,15 +12,28 @@
         <div class="row g-5">
             <div class="col-md-5 col-lg-4 order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Your cart </span>
-                    <span class="mx-auto"><button class="btn btn-danger btn-sm">Empty Cart!</button></span>
+                    <span class="text-primary">Your cart</span>
+                    <span class="mx-auto">
+                        <form action="/empty-cart">
+                            @csrf
+                            <input value="empty-cart" name="cart" hidden>
+                            <button class="btn btn-danger btn-sm">Empty Cart!</button>
+                        </form>
+                    </span>
                     <span class="badge bg-primary rounded-pill">{{ $count }}</span>
                 </h4>
+                
                 <ul class="list-group mb-3">
                     @foreach($cartCollection as $product)
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
-                            <h6 class="my-0">{{ $product->name }}e</h6>
+                            <h6 class="my-0">{{ $product->name }}</h6>
+                            <small class="text-body-secondary">Qty
+                                <span class="badge bg-primary rounded-pill">
+                                    {{ $product->quantity }}
+                                </span>
+                            </small>
+                            <br>
                             <small class="text-body-secondary">Brief description</small>
                         </div>
                         <span class="text-body-secondary">£{{ $product->price }}</span>
