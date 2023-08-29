@@ -22,7 +22,14 @@
                 <div class="my-3 p-3">
                     <h2 class="display-5">{{$product->name}}</h2>
                     <p class="lead">Price £{{ $product->price }}</p>
-                    <a class="btn btn-primary">Buy!</a>
+                    <form id="form" action="/addToCart">
+                        @csrf
+                        <input value="{{$product->name}}" name="name" hidden>
+                        <input value="{{$product->price}}" name="price" hidden>
+                        <input value="{{$product->id}}" name="id" hidden>
+                        <button class="btn btn-primary">Buy!</button>
+                    </form>
+
                 </div>
                     <img class="mx-auto" style="width: 90%; height: 300px; border-radius: 21px 21px 0 0;" src="{{ $product->image }}">
             </div>
