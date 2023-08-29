@@ -178,7 +178,7 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav flex-grow-1 justify-content-between">
-                    <li class="nav-item"><a class="nav-link" href="#">
+                    <li class="nav-item"><a class="nav-link" href="/">
                             <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Tour</a></li>
@@ -187,8 +187,9 @@
                     <li class="nav-item"><a class="nav-link" href="#">Enterprise</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">
+                    <li class="nav-item"><a class="nav-link" href="/checkout">
                             <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
+                            <span id="cart_count" class="badge text-bg-primary">0</span>
                         </a></li>
                 </ul>
             </div>
@@ -244,6 +245,24 @@
     </div>
 </footer>
 @stack('script')
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $("form").submit(function(e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $(this);
+        var actionUrl = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: actionUrl,
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                // change number on checkout icon
+                $("#cart_count").text(data)
+                console.log(data); // show response from the php script.
+            }
+        });
+    });
+</script>
 </body>
 </html>
