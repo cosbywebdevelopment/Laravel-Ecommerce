@@ -189,7 +189,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
                     <li class="nav-item"><a class="nav-link" href="/checkout">
                             <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
-                            <span id="cart_count" class="badge text-bg-primary">0</span>
+                            <span id="cart_count" class="badge rounded-pill text-bg-primary">{{ $count }}</span>
                         </a></li>
                 </ul>
             </div>

@@ -11,7 +11,13 @@ class HomeController extends Controller
 
     function index(){
         $products = Products::factory()->count(4)->make();
-        return view('index', compact('products'));
+        $cartCollection = Cart::getContent();
+        if($cartCollection->count() > 0){
+            $count = $cartCollection->count();
+        } else{
+            $count = '0';
+        }
+        return view('index', compact('products', 'count'));
     }
 
     function addToCart(Request $request){
@@ -29,6 +35,13 @@ class HomeController extends Controller
     }
 
     function checkout(){
-        return view('checkout.index');
+        $cartCollection = Cart::getContent();
+        if($cartCollection->count() > 0){
+            $count = $cartCollection->count();
+            $total = Cart::getTotal();
+        } else{
+            $count = '0';
+        }
+        return view('checkout.index', compact('count', 'cartCollection', 'total'));
     }
 }
