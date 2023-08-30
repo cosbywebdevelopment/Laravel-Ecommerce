@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
-    function index(){
+    function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
         $products = Products::factory()->count(4)->make();
         if(Cart::getTotalQuantity() > 0){
             $count = Cart::getTotalQuantity();
@@ -31,7 +32,8 @@ class HomeController extends Controller
         return Cart::getTotalQuantity();
     }
 
-    function checkout(){
+    function checkout(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
         $cartCollection = Cart::getContent();
         if(Cart::getTotalQuantity() > 0){
             $count = Cart::getTotalQuantity();
@@ -43,7 +45,8 @@ class HomeController extends Controller
         return view('checkout.index', compact('count', 'cartCollection', 'total'));
     }
 
-    function emptyCart(Request $request){
+    function emptyCart(Request $request): int
+    {
         if($request->cart == 'empty-cart'){
             Cart::clear();
         }
