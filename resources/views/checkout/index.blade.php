@@ -22,7 +22,7 @@
                     </span>
                     <span class="badge bg-primary rounded-pill">{{ $count }}</span>
                 </h4>
-                
+
                 <ul class="list-group mb-3">
                     @foreach($cartCollection as $product)
                     <li class="list-group-item d-flex justify-content-between lh-sm">
